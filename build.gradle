@@ -18,23 +18,27 @@ allprojects {
 }
 
 ext {
+    projectConfig = [
+            compileSdkVersion: 28,
+            minSdkVersion    : 16,
+            targetSdkVersion : 28
+    ]
     projectVersion = [
-            versionCode      : getTimeRevision(),
-            versionName      : "1.0.${getGitRevision()}"
+            versionCode: getTimeRevision(),
+            versionName: "1.0.${getGitRevision()}"
     ]
 }
-
 
 /**
  * 获取编译时间
  */
 def static releaseTime() {
-    return new Date().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("UTC"))
+    return new Date().format("yyyy-MM-dd-HH-mm")
 }
 
 //2019.1.1 0:0:0
 //utc 1546272000
-def static parseRevision(String commitTimestamp){
+def static parseRevision(String commitTimestamp) {
     return Integer.valueOf(commitTimestamp) - 1546272000
 }
 
@@ -49,6 +53,6 @@ def static getTimeRevision() {
 /**
  * 获取Git的版本号前7位
  */
-def static getGitRevision(){
+def static getGitRevision() {
     return 'git rev-parse --short HEAD'.execute().text.trim()
 }
