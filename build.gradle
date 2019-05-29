@@ -16,3 +16,39 @@ allprojects {
         google()
     }
 }
+
+ext {
+    projectVersion = [
+            versionCode      : getTimeRevision(),
+            versionName      : "1.0.${getGitRevision()}"
+    ]
+}
+
+
+/**
+ * 获取编译时间
+ */
+def static releaseTime() {
+    return new Date().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("UTC"))
+}
+
+//2019.1.1 0:0:0
+//utc 1546272000
+def static parseRevision(String commitTimestamp){
+    return Integer.valueOf(commitTimestamp) - 1546272000
+}
+
+/**
+ * 基于2019年1月1日0时0分0秒（1514736000），到目前的时间差异，单位：秒
+ */
+def static getTimeRevision() {
+    //获取最新提交时间戳
+    return parseRevision('git log -1 --format=%ct'.execute().text.trim())
+}
+
+/**
+ * 获取Git的版本号前7位
+ */
+def static getGitRevision(){
+    return 'git rev-parse --short HEAD'.execute().text.trim()
+}
