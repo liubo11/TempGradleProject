@@ -17,16 +17,6 @@ android {
         }
     }
 
-    defaultConfig {
-        applicationId "com.lb.collection"
-        minSdkVersion rootProject.projectConfig.minSdkVersion
-        targetSdkVersion rootProject.projectConfig.targetSdkVersion
-        versionCode rootProject.projectVersion.versionCode
-        versionName rootProject.projectVersion.versionName
-
-        signingConfig signingConfigs.release
-    }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -57,35 +47,35 @@ android {
     
     lintOptions {
         //出现错误不终止构建
-        abortOnError false
+        abortOnError    false
         //不输入日志
-        htmlReport false
+        htmlReport      false
         //不输入日志
-        xmlReport false
+        xmlReport       false
         //release 时检测fatal等级
         checkReleaseBuilds true
-        disable 'MissingTranslation'
+        disable         'MissingTranslation', 'ExtraTranslation'
     }
 
     flavorDimensions "fd"
     productFlavors {
         flv1 {
             applicationId       "com.lb.fd1"
-            minSdkVersion rootProject.projectConfig.minSdkVersion
-            targetSdkVersion rootProject.projectConfig.targetSdkVersion
-            versionCode rootProject.projectVersion.versionCode
-            versionName rootProject.projectVersion.versionName
+            minSdkVersion       rootProject.projectConfig.minSdkVersion
+            targetSdkVersion    rootProject.projectConfig.targetSdkVersion
+            versionCode         rootProject.projectVersion.versionCode
+            versionName         rootProject.projectVersion.versionName
             dimension           "fd"
-            signingConfig signingConfigs.release
+            signingConfig       signingConfigs.release
         }
         flv2 {
             applicationId       "com.lb.fd2"
-            minSdkVersion rootProject.projectConfig.minSdkVersion
-            targetSdkVersion rootProject.projectConfig.targetSdkVersion
-            versionCode rootProject.projectVersion.versionCode
-            versionName rootProject.projectVersion.versionName
+            minSdkVersion       rootProject.projectConfig.minSdkVersion
+            targetSdkVersion    rootProject.projectConfig.targetSdkVersion
+            versionCode         rootProject.projectVersion.versionCode
+            versionName         rootProject.projectVersion.versionName
             dimension           "fd"
-            signingConfig signingConfigs.release
+            signingConfig       signingConfigs.release
         }
     }
 }

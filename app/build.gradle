@@ -3,24 +3,22 @@ android {
     compileSdkVersion rootProject.projectConfig.compileSdkVersion
 
     signingConfigs {
-        debug {
-        }
+        debug {}
         release {
-            storeFile file("keystore/lbReleaseAlpha1.jks")
-            storePassword "123456"
-            keyAlias "com.lb.release.alpha1"
-            keyPassword "123456"
+            storeFile       file("keystore/lbReleaseAlpha1.jks")
+            storePassword   project.hasProperty('app.release.storepassword')?project.getProperty('app.release.storepassword'):''
+            keyAlias        project.hasProperty('app.release.keyalias')?project.getProperty('app.release.keyalias'):''
+            keyPassword     project.hasProperty('app.release.keypassword')?project.getProperty('app.release.keypassword'):''
         }
     }
 
     defaultConfig {
-        applicationId "com.lb.collection"
-        minSdkVersion rootProject.projectConfig.minSdkVersion
-        targetSdkVersion rootProject.projectConfig.targetSdkVersion
-        versionCode rootProject.projectVersion.versionCode
-        versionName rootProject.projectVersion.versionName
-
-        signingConfig signingConfigs.release
+        applicationId       "com.lb.collection"
+        minSdkVersion       rootProject.projectConfig.minSdkVersion
+        targetSdkVersion    rootProject.projectConfig.targetSdkVersion
+        versionCode         rootProject.projectVersion.versionCode
+        versionName         rootProject.projectVersion.versionName
+        signingConfig       signingConfigs.release
     }
 
     buildTypes {
@@ -45,6 +43,12 @@ android {
     }
 }
 
+task ttt {
+    println (project.getProperty('app.release.storepassword'))
+    println (project.getProperty('app.release.storepassword'))
+    println (project.getProperty('app.release.storepassword'))
+    println (project.getProperty('app.release.storepassword'))
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
