@@ -1,1 +1,2 @@
+include ':mygradle'
 include "app"
