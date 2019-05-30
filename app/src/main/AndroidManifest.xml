@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <meta-data
+            android:name="MyMetaDataName"
+            android:value="${MyMetaDataValue}" />
+
         <activity android:name="com.lb.collection.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
