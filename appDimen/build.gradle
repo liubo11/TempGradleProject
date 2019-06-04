@@ -80,6 +80,42 @@ android {
     }
 }
 
+configurations {
+    flv1Api
+    flv1DebugImplementation
+    flv1ReleaseImplementation
+    flv2DebugImplementation
+    flv2ReleaseImplementation
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //debugCompile project(path: ':moduleA', configuration: 'debug')
+    //releaseCompile project(path: ':moduleA', configuration: 'release')
+
+    flv1Implementation 'com.android.support:appcompat-v7:28.0.0'
 }
+
+task execTsTask {
+    println("start cmd: dir")
+
+    def out = new ByteArrayOutputStream()
+    //执行命令
+    exec {
+        workingDir projectDir.getPath()
+        commandLine 'cmd', '/c', 'dir'
+        standardOutput = out
+    }
+
+    //println("test cmd: \n ${new String(out.toByteArray())}")
+}
+
+task dbTask {
+    println("xxxxxxxx="+name)
+
+
+
+}
+
+preBuild.dependsOn dbTask

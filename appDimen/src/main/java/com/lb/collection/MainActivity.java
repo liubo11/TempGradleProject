@@ -1,7 +1,6 @@
 package com.lb.collection;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -18,7 +17,16 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         TextView tv = new TextView(this);
-        tv.setText("xxxxxxxxxxxxxx"+getAppVersionName());
+        tv.append("xxxxxxxxxxxxxx"+getAppVersionName());
+        tv.append("\n");
+        try {
+            tv.append(Class.forName("android.support.v7.widget.AppCompatButton").getName());
+            tv.append("\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+            tv.append(e.toString());
+            tv.append("\n");
+        }
         setContentView(tv);
     }
     /**

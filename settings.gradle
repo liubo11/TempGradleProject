@@ -1,4 +1,4 @@
 include ':mygradle'
-include "app"
-include "appDimen"
+include ":app"
+include ":appDimen"
 
