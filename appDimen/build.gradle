@@ -6,6 +6,32 @@ def flavName = ['flv1':'flv1Name_',
 android {
     compileSdkVersion rootProject.projectConfig.compileSdkVersion
 
+    /*
+    //方式1
+    sourceSets {
+		flv1 {
+		    manifest.srcFile 'AndroidManifest.xml'
+		}
+		flv2 {
+		    manifest.srcFile 'AndroidManifest.xml'
+		}
+	}
+
+    //方式2
+    sourceSets {
+        //
+        sourceSets.all { sourceSet ->
+            if (sourceSet.name.contains('Debug') || sourceSet.name.contains('Release')) {
+                if (sourceSet.name.contains("xxx")) {
+                    sourceSet.java.srcDirs = ['a/b/c', 'd/f']
+                    sourceSet.manifest.srcFile 'xxx/AndroidManifest.xml'
+                } else {
+                    sourceSet.manifest.srcFile 'yyy/AndroidManifest.xml'
+                }
+            }
+        }
+    }*/
+
     signingConfigs {
         debug {
         }
@@ -80,6 +106,7 @@ android {
     }
 }
 
+//不同情形采用不同的依赖
 configurations {
     flv1Api
     flv1DebugImplementation
